@@ -5,6 +5,13 @@
  */
 
 // @lc code=start
+
+/*
+拿每個row 第一個資料決定要不要翻轉整個row
+取第二到最後一個字元組裝起來的string當作key
+最後看哪個key有最大size
+*/
+
 func maxEqualRowsAfterFlips(matrix [][]int) int {
 	lenOfMatrix := len(matrix)
 	if lenOfMatrix == 0 {
