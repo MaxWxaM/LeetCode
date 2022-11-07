@@ -8,10 +8,11 @@
 func isValidSudoku(board [][]byte) bool {
 	rowMap := nestedMapStruct{nestedMap: make(map[int]map[byte]struct{})}
 	columnMap := nestedMapStruct{nestedMap: make(map[int]map[byte]struct{})}
-	smap := squareMapStruct{squareMap: map[square]map[byte]struct{}}
+	smap := squareMapStruct{squareMap: make(map[square]map[byte]struct{})}
 	var b byte
 	var squ square
 	for i := 0; i < 9; i++ {
+
 		for j := 0; j < 9; j++ {
 			b = board[i][j]
 			if b == '.' {
