@@ -5,6 +5,10 @@
  */
 
 // @lc code=start
+/*
+依序取數字, 在用two pointer取後面兩個, 如果三個加總超過0 則right向左, 反之
+多邏輯判斷跳過下個節點為重複的(including left & right, current)
+*/
 func threeSum(nums []int) [][]int {
 	var result [][]int
 	sort.Ints(nums)
