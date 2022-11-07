@@ -6,6 +6,7 @@
 
 // @lc code=start
 func isPalindrome(x int) bool {
+	/* Init version - > convert to string and sliding windows to check
 	if x < 0 {
 		return false
 	}
@@ -20,6 +21,18 @@ func isPalindrome(x int) bool {
 		right--
 	}
 	return true
+	*/
+	/*Return a rotate int and compare*/
+	if x < 0 {
+		return false
+	}
+	r := 0
+	for z := x; z > 0; z /= 10 {
+		tmp := z % 10
+		r *= 10
+		r += tmp
+	}
+	return r == x
 }
 
 // @lc code=end
