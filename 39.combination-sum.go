@@ -21,7 +21,7 @@ func dfs(graph []int, path []int, index int, target int, result *[][]int) {
 	}
 
 	for i := index; i < len(graph); i++ {
-		currentVal := (graph)[i]
+		currentVal := graph[i]
 		if currentVal > target {
 			break
 		}
