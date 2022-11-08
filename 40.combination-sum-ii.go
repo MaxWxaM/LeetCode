@@ -1,11 +1,11 @@
 /*
- * @lc app=leetcode id=39 lang=golang
+ * @lc app=leetcode id=40 lang=golang
  *
- * [39] Combination Sum
+ * [40] Combination Sum II
  */
 
 // @lc code=start
-func combinationSum(candidates []int, target int) [][]int {
+func combinationSum2(candidates []int, target int) [][]int {
 	result := &[][]int{}
 	sort.Ints(candidates)
 	dfs(candidates, []int{}, 0, target, result)
@@ -21,11 +21,13 @@ func dfs(graph []int, path []int, index int, target int, result *[][]int) {
 	}
 
 	for i := index; i < len(graph); i++ {
-		currentVal := (graph)[i]
-		if currentVal > target {
+		if (graph)[i] > target {
 			break
 		}
-		dfs(graph, append(path, currentVal), i, target-currentVal, result)
+		if i > index && (graph)[i] == (graph)[i-1] {
+			continue
+		}
+		dfs(graph, append(path, (graph)[i]), i+1, target-(graph)[i], result)
 	}
 }
 
