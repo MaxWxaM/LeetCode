@@ -13,6 +13,16 @@ func missingNumber(nums []int) int {
 	}
 	total += len(nums)
 	return total - sum
+	/* bitmap version
+	l := len(nums)
+	r := nums[0]
+	for i := 1; i < l; i++ {
+		r ^= (i ^ nums[i])
+	}
+	r ^= l
+	return r
+
+	*/
 }
 
 // @lc code=end
