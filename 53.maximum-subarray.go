@@ -6,27 +6,26 @@
 
 // @lc code=start
 /*
-Init version
-1. 只要累積變成負值就直接捨棄變成0
+Second verion
+1. kadane algorithm
 */
 
 func maxSubArray(nums []int) int {
-	if len(nums) == 1 {
-		return nums[0]
+	accu, maxAccu := nums[0], nums[0]
+	for _, v := range nums[1:] {
+		accu = max(v, accu+v)
+		if accu > maxAccu {
+			maxAccu = accu
+		}
 	}
-	sum, max := 0, nums[0]
+	return maxAccu
+}
 
-	for _, v := range nums {
-		if sum < 0 {
-			sum = v
-		} else {
-			sum += v
-		}
-		if sum > max {
-			max = sum
-		}
+func max(i, j int) int {
+	if i > j {
+		return i
 	}
-	return max
+	return j
 }
 
 // @lc code=end
