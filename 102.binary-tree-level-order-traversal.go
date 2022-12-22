@@ -14,39 +14,30 @@
  * }
  */
 /*
-BFS
-先廣度搜尋後加到array
-再遞迴丟入下一層所有節點
-需要ans不斷往下傳
+BFS with QUEUE
 */
 func levelOrder(root *TreeNode) [][]int {
 	if root == nil {
 		return nil
 	}
 	ans := [][]int{}
-	nodes := []*TreeNode{root}
-	Traversal(nodes, &ans)
+	queue := []*TreeNode{root}
+	for len(queue) > 0 {
+		nodes := queue
+		queue = []*TreeNode{}
+		arr := make([]int, len(nodes))
+		for i, v := range nodes {
+			arr[i] = v.Val
+			if v.Left != nil {
+				queue = append(queue, v.Left)
+			}
+			if v.Right != nil {
+				queue = append(queue, v.Right)
+			}
+		}
+		ans = append(ans, arr)
+	}
 	return ans
-}
-
-func Traversal(nodes []*TreeNode, ans *[][]int) {
-	arr := make([]int, len(nodes))
-	nextNodes := []*TreeNode{}
-	for i, v := range nodes {
-		arr[i] = v.Val
-		if v.Left != nil {
-			nextNodes = append(nextNodes, v.Left)
-		}
-		if v.Right != nil {
-			nextNodes = append(nextNodes, v.Right)
-		}
-	}
-	*ans = append(*ans, arr)
-	if len(nextNodes) == 0 {
-		return
-	}
-
-	Traversal(nextNodes, ans)
 }
 
 // @lc code=end
